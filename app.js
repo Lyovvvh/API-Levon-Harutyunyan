@@ -1,10 +1,7 @@
+import './envInformaition/initEnv.js';
 import express from 'express';
-import dotenv from 'dotenv';
-dotenv.config();
 import router from './routes/usersRouter.js'
-// console.log(process.env);
 const app = express();
-
 app.use(express.json());
 
 app.use('/users',router)

@@ -1,11 +1,11 @@
 import CryptoJS from 'crypto-js';
 
 const checkToken = (req, res, next) => {
-    const token = req.headers['x-token'];
+    const token = req.headers['token'];
 
     if (token) {
         try {
-            const bytes = CryptoJS.AES.decrypt(token, SECRET);
+            const bytes = CryptoJS.AES.decrypt(token, process.env.SECRET);
             let decryptedData = bytes.toString(CryptoJS.enc.Utf8);
 
             if (decryptedData) {
