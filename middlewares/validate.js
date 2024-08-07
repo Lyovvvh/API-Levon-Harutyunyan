@@ -9,7 +9,7 @@ export default (schema, target) => {
             const hasErrors = Object.keys(fields).length > 0;
 
             if (hasErrors) {
-                res.status(422).json({ "validation error": fields });
+                res.status(422).json({ "errors": fields,"message":"Validation Failed" });
                 return
             }
         }

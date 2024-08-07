@@ -1,8 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import db from './clients/db.mysql.js'
-import router from './routes/usersRouter.js'
 dotenv.config();
+import router from './routes/usersRouter.js'
+// console.log(process.env);
 const app = express();
 
 app.use(express.json());
