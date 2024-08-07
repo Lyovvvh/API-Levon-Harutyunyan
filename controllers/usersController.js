@@ -17,7 +17,7 @@ export default {
             }
 
             const [rows] = await db.query(
-                'INSERT INTO users (username, email, password) VALUES (?, ?, ?, ?)',
+                'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
                 [body.name, body.email.toLowerCase(), md5(md5(body.password) + process.env.SECRET)]
             );
             res.json({"message": "Users registration successfulness", rows});
@@ -69,6 +69,15 @@ export default {
     async update(req, res) {
         try {
             const body = req.body;
+            const [existingUsers] = await db.query(
+                `SELECT * FROM users WHERE id = ?`,
+                [body.id]
+            );
+
+            if (existingUsers.length === 0) {
+                return res.status(401).json({"message": "Invalid id"});
+            }
+
             if (body.email || body.password || body.username) {
                 if (body.email) {
                     const [rows] = await db.query(
