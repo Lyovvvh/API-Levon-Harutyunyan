@@ -4,7 +4,7 @@ const dbConfig = {
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'todo',
+    database: 'todo_db',
 }
 
 const connection = mysql.createConnection(dbConfig);

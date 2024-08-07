@@ -2,7 +2,7 @@ import {v4 as uuidv4} from 'uuid';
 import mysql from "mysql2";
 import db from '../clients/db.mysql.js'
 export default {
-    registration (req, res) {
+     registration (req, res) {
         try {
             const body = req.body;
             body.uuid = uuidv4();
@@ -17,11 +17,12 @@ export default {
             // }
             //
             // console.log(body.name, body.email, body.password,body.uuid)
-            const [raws] = db.query(`
-                INSERT INTO users (name, email, password, uuid)
-                VALUES (body.name, body.email, body.password,body.uuid);
-            `);
-            res.json({raws});
+            console.log(body)
+            const [rows] =  db.query(
+                'INSERT INTO users (username, email, password, uuid) VALUES (?, ?, ?, ?)',
+                [body.username, body.email, body.password, body.uuid]
+            );
+            res.json({rows});
         }catch(err) {
             res.status(500).json({"message": err.message});
         }

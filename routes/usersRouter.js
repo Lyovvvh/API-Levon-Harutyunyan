@@ -1,4 +1,5 @@
 import express from 'express';
+import db from '../clients/db.mysql.js'
 import validate from '../middlewares/validate.js';
 import schema from '../schemas/users.js';
 import userController from '../controllers/usersController.js';
